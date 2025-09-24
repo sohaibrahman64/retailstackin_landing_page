@@ -6,24 +6,34 @@ const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
+const logger = require('./logging');
 const app = express();
 
-//require('dotenv').config();
+require('dotenv').config();
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+    enableKeepAlive: true,
+    keepAliveInitialDelay: 10000
 });
 
-db.connect((err) => {
+let dbReady = false;
+db.getConnection((err, conn) => {
     if (err) {
-        console.error('MySQL connection failed:', err.message);
-        console.log('⚠️  Running without database - form submissions will be logged only');
+        logger.error('MySQL pool connection failed', { message: err.message });
+        logger.warn('Running without database - form submissions will be logged only');
+        dbReady = false;
         return;
     }
-    console.log('Connected to MySQL database ✅');
+    dbReady = true;
+    logger.info('Connected to MySQL (pool)');
+    conn.release();
 });
 
 
@@ -31,6 +41,9 @@ db.connect((err) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// HTTP request logging
+app.use(logger.requestLogger);
 
 // Security headers
 app.use(helmet());
@@ -60,7 +73,7 @@ app.use((req, res, next) => {
         const isSecure = req.secure || req.headers['x-forwarded-proto'] === 'https';
         //const isSecure = req.secure || req.headers['x-forwarded-proto']//?.startsWith('https');
         if (!isSecure) {
-            console.warn(`Redirecting insecure request: ${req.originalUrl}`);
+            logger.warn('Redirecting insecure request', { url: req.originalUrl });
             const host = req.headers.host;
             const url = `https://${host}${req.originalUrl}`;
             return res.redirect(301, url);
@@ -163,24 +176,24 @@ const validateForm = [
 ];
 
 app.post('/submit-form', submitFormLimiter, validateForm, (req, res) => {
-    console.log('Form submission received:', req.body);
+    logger.info('Form submission received', { body: req.body });
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        console.warn('Validation failed:', errors.array().map(e => e.param));
+        logger.warn('Validation failed', { fields: errors.array().map(e => e.param) });
         return res.redirect(303, '/error');
     }
     const { name, email, phone_no, business_type, gst_type, city } = req.body;
     
     // Basic validation
     if (!name || !email || !phone_no || !business_type || !gst_type || !city) {
-        console.log('Validation failed - missing fields:', { name: !!name, email: !!email, phone_no: !!phone_no, business_type: !!business_type, gst_type: !!gst_type, city: !!city });
+        logger.warn('Validation failed - missing fields', { name: !!name, email: !!email, phone_no: !!phone_no, business_type: !!business_type, gst_type: !!gst_type, city: !!city });
         return res.status(400).send('All fields are required');
     }
     
-    // Check database connection
-    if (!db || db.state === 'disconnected') {
-        console.log('Database not available - logging submission only');
-        console.log('Form submission data:', { name, email, phone_no, business_type, gst_type, city });
+    // Check database readiness (pool health)
+    if (!dbReady) {
+        logger.info('Database not available - logging submission only');
+        logger.debug('Form submission data (no DB)', { name, email, phone_no, business_type, gst_type, city });
         
         // Redirect to success page even without database for testing
         return res.redirect(303, '/thank-you');
@@ -189,13 +202,11 @@ app.post('/submit-form', submitFormLimiter, validateForm, (req, res) => {
     const sql = 'INSERT INTO signup_form (name, email, phone_no, business_type, gst_type, city) VALUES (?, ?, ?, ?, ?, ?)';
     db.query(sql, [name, email, phone_no, business_type, gst_type, city], (err, result) => {
         if (err) {
-            console.error('Database error:', err);
-            console.error('SQL:', sql);
-            console.error('Values:', [name, email, phone_no, business_type, gst_type, city]);
+            logger.error('Database error', { error: err && err.message ? err.message : err, sql, values: [name, email, phone_no, business_type, gst_type, city] });
             return res.redirect(303, '/error');
         }
         
-        console.log('New user registered successfully:', { name, email, business_type, id: result.insertId });
+        logger.info('New user registered successfully', { name, email, business_type, id: result.insertId });
         return res.redirect(303, '/thank-you');
     });
 });
@@ -203,7 +214,7 @@ app.post('/submit-form', submitFormLimiter, validateForm, (req, res) => {
 // Handle CSRF token errors gracefully
 app.use((err, req, res, next) => {
     if (err.code === 'EBADCSRFTOKEN') {
-        console.warn('Invalid CSRF token');
+        logger.warn('Invalid CSRF token');
         return res.redirect(303, '/error');
     }
     next(err);
@@ -211,5 +222,5 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`RetailStackIn running at http://localhost:${PORT}`);
+    logger.info('RetailStackIn running', { url: `http://localhost:${PORT}` });
 });
