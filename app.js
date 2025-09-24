@@ -9,7 +9,7 @@ const { body, validationResult } = require('express-validator');
 const logger = require('./logging');
 const app = express();
 
-require('dotenv').config();
+//require('dotenv').config();
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,

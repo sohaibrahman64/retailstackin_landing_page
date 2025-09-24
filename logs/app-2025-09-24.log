@@ -1,2 +1,4 @@
 2025-09-24T10:37:31.362Z INFO RetailStackIn running {"url":"http://localhost:3000"}
 2025-09-24T10:37:31.478Z INFO Connected to MySQL database
+2025-09-24T11:40:20.292Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T11:40:20.668Z INFO Connected to MySQL (pool)
