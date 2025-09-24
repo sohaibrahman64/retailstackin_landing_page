@@ -1,0 +1,25 @@
+{
+  "name": "retailstack_landing_page",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@analytics/google-analytics": "^1.1.0",
+    "analytics": "^0.8.19",
+    "cookie-parser": "^1.4.7",
+    "csurf": "^1.11.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "mysql2": "^3.15.0",
+    "nodemon": "^3.1.10"
+  }
+}

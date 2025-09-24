@@ -1,0 +1,40 @@
+Database error: Error: Can't add new command when connection is in closed state
+    at Connection._addCommandClosedState (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/mysql2/lib/base/connection.js:159:17)
+    at Connection.query (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/mysql2/lib/base/connection.js:571:17)
+    at /home/wgbmorkw/retailstack/app.js:190:8
+    at Layer.handleRequest (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/router/lib/layer.js:152:17)
+    at next (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/router/lib/route.js:157:13)
+    at middleware (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/express-validator/lib/middlewares/check.js:16:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  fatal: true
+}
+SQL: INSERT INTO signup_form (name, email, phone_no, business_type, gst_type, city) VALUES (?, ?, ?, ?, ?, ?)
+Values: [
+  'Sameer Wankhede',
+  'sameerwankhede@gmail.com',
+  '8934567821',
+  'Apparel',
+  'Unregistered',
+  'Mumbai'
+]
+Redirecting insecure request: /robots.txt
+Database error: Error: Can't add new command when connection is in closed state
+    at Connection._addCommandClosedState (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/mysql2/lib/base/connection.js:159:17)
+    at Connection.query (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/mysql2/lib/base/connection.js:571:17)
+    at /home/wgbmorkw/retailstack/app.js:190:8
+    at Layer.handleRequest (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/router/lib/layer.js:152:17)
+    at next (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/router/lib/route.js:157:13)
+    at middleware (/home/wgbmorkw/nodevenv/retailstack/16/lib/node_modules/express-validator/lib/middlewares/check.js:16:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  fatal: true
+}
+SQL: INSERT INTO signup_form (name, email, phone_no, business_type, gst_type, city) VALUES (?, ?, ?, ?, ?, ?)
+Values: [
+  'Hamza',
+  'humeraa504@gmail.com',
+  '8850495506',
+  'Apparel',
+  'Unregistered',
+  'Mumbai'
+]
+Redirecting insecure request: /robots.txt
