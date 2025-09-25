@@ -2,3 +2,31 @@
 2025-09-24T10:37:31.478Z INFO Connected to MySQL database
 2025-09-24T11:40:20.292Z INFO RetailStackIn running {"url":"http://localhost:3000"}
 2025-09-24T11:40:20.668Z INFO Connected to MySQL (pool)
+2025-09-24T16:37:45.993Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T16:37:46.059Z INFO Connected to MySQL (pool)
+2025-09-24T16:41:51.171Z INFO Form submission received {"body":{"_csrf":"hhAMMmr8-8r31_G_XfYdaBN1mVlwdmyj6nJ0","name":"Sameer Wankhede","email":"retailstack@gmail.com","phone_no":"8321432456","business_type":"Furniture","gst_type":"Unregistered","city":"Mumbai"}}
+2025-09-24T16:41:51.291Z INFO New user registered successfully {"name":"Sameer Wankhede","email":"retailstack@gmail.com","business_type":"Furniture","id":5}
+2025-09-24T16:41:51.330Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"sohaib.rahman64@gmail.com","subject":"New RetailStack signup"}
+2025-09-24T16:41:51.334Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"retailstack@gmail.com","subject":"Thanks for signing up for RetailStack"}
+2025-09-24T16:41:51.335Z INFO Signup emails dispatched {"outcomes":[{"idx":0,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"},{"idx":1,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"}],"toOwner":true,"toUser":true}
+2025-09-24T16:47:05.078Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T16:47:05.132Z INFO Connected to MySQL (pool)
+2025-09-24T16:48:16.660Z INFO Form submission received {"body":{"_csrf":"2AW5PaHL-XHxIASE7V4O6UaCBL7pRqXPcMlg","name":"Sameer Wankhede","email":"retailstackin@gmail.com","phone_no":"8654321789","business_type":"Apparel","gst_type":"Unregistered","city":"Thane"}}
+2025-09-24T16:48:16.712Z INFO New user registered successfully {"name":"Sameer Wankhede","email":"retailstackin@gmail.com","business_type":"Apparel","id":6}
+2025-09-24T16:48:16.757Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"sohaib.rahman64@gmail.com","subject":"New RetailStack signup"}
+2025-09-24T16:48:16.763Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"retailstackin@gmail.com","subject":"Thanks for signing up for RetailStack"}
+2025-09-24T16:48:16.764Z INFO Signup emails dispatched {"outcomes":[{"idx":0,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"},{"idx":1,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"}],"toOwner":true,"toUser":true}
+2025-09-24T17:12:49.545Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T17:12:49.607Z INFO Connected to MySQL (pool)
+2025-09-24T17:14:51.324Z INFO Form submission received {"body":{"_csrf":"cPA4OGis-zJ4H6tEFFABNsI2AFSorkvCq1iE","name":"Sameer Wankhede","email":"retailstackin@gmail.com","phone_no":"8321987654","business_type":"Garment&#x2F;Fashion &amp; Hosiery","gst_type":"Unregistered","city":"Thane"}}
+2025-09-24T17:14:51.332Z INFO New user registered successfully {"name":"Sameer Wankhede","email":"retailstackin@gmail.com","business_type":"Garment&#x2F;Fashion &amp; Hosiery","id":7}
+2025-09-24T17:14:51.368Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"sohaib.rahman64@gmail.com","subject":"New RetailStack signup"}
+2025-09-24T17:14:51.370Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"retailstackin@gmail.com","subject":"Thanks for signing up for RetailStack"}
+2025-09-24T17:14:51.370Z INFO Signup emails dispatched {"outcomes":[{"idx":0,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"},{"idx":1,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"}],"toOwner":true,"toUser":true}
+2025-09-24T17:19:51.523Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T17:19:51.562Z INFO Connected to MySQL (pool)
+2025-09-24T17:21:20.425Z INFO Form submission received {"body":{"_csrf":"JNJ3xxa2-zvNjVAjReZH4yMIUDNrinM61g80","name":"Sameer Wankhede","email":"retailstackin@gmail.com","phone_no":"8321987654","business_type":"Garment&#x2F;Fashion &amp; Hosiery","gst_type":"Unregistered","city":"Thane"}}
+2025-09-24T17:21:20.441Z INFO New user registered successfully {"name":"Sameer Wankhede","email":"retailstackin@gmail.com","business_type":"Garment&#x2F;Fashion &amp; Hosiery","id":8}
+2025-09-24T17:21:20.470Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"sohaib.rahman64@gmail.com","subject":"New RetailStack signup"}
+2025-09-24T17:21:20.471Z ERROR Email send failed {"error":"connect ECONNREFUSED 127.0.0.1:587","to":"retailstackin@gmail.com","subject":"Thanks for signing up for RetailStack"}
+2025-09-24T17:21:20.471Z INFO Signup emails dispatched {"outcomes":[{"idx":0,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"},{"idx":1,"status":"rejected","reason":"connect ECONNREFUSED 127.0.0.1:587"}],"toOwner":true,"toUser":true}
