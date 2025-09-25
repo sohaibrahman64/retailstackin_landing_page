@@ -7,9 +7,10 @@ const csrf = require('csurf');
 const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
 const logger = require('./logging');
+const { sendOwnerNotification, sendUserWelcome } = require('./mailer');
 const app = express();
 
-//require('dotenv').config();
+require('dotenv').config();
 
 const db = mysql.createPool({
     host: process.env.DB_HOST,
@@ -92,6 +93,20 @@ const csrfProtection = csrf({
     }
 });
 app.use(csrfProtection);
+
+// Helper to dispatch signup emails without blocking the response
+function dispatchSignupEmails(data) {
+    Promise.allSettled([
+        sendOwnerNotification(data),
+        sendUserWelcome(data)
+    ]).then((results) => {
+        const outcomes = results.map((r, i) => ({ idx: i, status: r.status, reason: r.reason && r.reason.message }));
+        logger.info('Signup emails dispatched', { outcomes, toOwner: true, toUser: true });
+    }).catch((err) => {
+        // Should not happen with allSettled, but guard anyway
+        logger.error('Signup email dispatch unexpected failure', { error: err && err.message ? err.message : err });
+    });
+}
 
 // Endpoint to fetch CSRF token for clients
 app.get('/csrf-token', (req, res) => {
@@ -194,6 +209,8 @@ app.post('/submit-form', submitFormLimiter, validateForm, (req, res) => {
     if (!dbReady) {
         logger.info('Database not available - logging submission only');
         logger.debug('Form submission data (no DB)', { name, email, phone_no, business_type, gst_type, city });
+        // Still send notification emails
+        dispatchSignupEmails({ name, email, phone_no, business_type, gst_type, city });
         
         // Redirect to success page even without database for testing
         return res.redirect(303, '/thank-you');
@@ -207,6 +224,8 @@ app.post('/submit-form', submitFormLimiter, validateForm, (req, res) => {
         }
         
         logger.info('New user registered successfully', { name, email, business_type, id: result.insertId });
+        // Fire-and-forget emails
+        dispatchSignupEmails({ name, email, phone_no, business_type, gst_type, city });
         return res.redirect(303, '/thank-you');
     });
 });
