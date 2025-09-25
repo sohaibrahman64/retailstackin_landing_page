@@ -38,3 +38,5 @@ Values: [
   'Mumbai'
 ]
 Redirecting insecure request: /robots.txt
+Redirecting insecure request: /
+MySQL connection failed: write ECONNRESET

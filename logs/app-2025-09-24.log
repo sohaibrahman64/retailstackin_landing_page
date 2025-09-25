@@ -2,3 +2,22 @@
 2025-09-24T10:37:31.478Z INFO Connected to MySQL database
 2025-09-24T11:40:20.292Z INFO RetailStackIn running {"url":"http://localhost:3000"}
 2025-09-24T11:40:20.668Z INFO Connected to MySQL (pool)
+2025-09-24T11:44:49.126Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T11:44:49.167Z INFO Connected to MySQL (pool)
+2025-09-24T11:45:16.589Z INFO Form submission received {"body":{"_csrf":"to1bDPgA-YWyjPrbHTYGyhoLFfdT-uWCC1qI","name":"Hamza","email":"hamza@gmail.com","phone_no":"08934567821","business_type":"Apparel","gst_type":"Unregistered","city":"Mumbai"}}
+2025-09-24T11:45:16.591Z INFO New user registered successfully {"name":"Hamza","email":"hamza@gmail.com","business_type":"Apparel","id":4}
+2025-09-24T11:50:18.126Z INFO Form submission received {"body":{"_csrf":"fEDOaNPL-rKAyND10PJGXrOF-oqWKY8HXFkU","name":"Humera","email":"ansarigulshan124@gmail.com","phone_no":"9870253518","business_type":"Dairy Farm Products&#x2F;Poultry","gst_type":"Unregistered","city":"Mumbai"}}
+2025-09-24T11:50:18.129Z INFO New user registered successfully {"name":"Humera","email":"ansarigulshan124@gmail.com","business_type":"Dairy Farm Products&#x2F;Poultry","id":5}
+2025-09-24T14:47:03.525Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T14:47:03.545Z WARN Redirecting insecure request {"url":"/media/system/js/core.js"}
+2025-09-24T14:47:03.736Z INFO Connected to MySQL (pool)
+2025-09-24T14:47:07.863Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T14:47:07.885Z INFO Connected to MySQL (pool)
+2025-09-24T14:47:07.985Z WARN Redirecting insecure request {"url":"/wp-includes/js/jquery/jquery.js"}
+2025-09-24T15:46:22.469Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T15:46:22.489Z INFO Connected to MySQL (pool)
+2025-09-24T15:46:23.291Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T15:46:23.298Z WARN Redirecting insecure request {"url":"/robots.txt"}
+2025-09-24T15:46:23.311Z INFO Connected to MySQL (pool)
+2025-09-24T17:44:16.998Z INFO RetailStackIn running {"url":"http://localhost:3000"}
+2025-09-24T17:44:17.115Z INFO Connected to MySQL (pool)
